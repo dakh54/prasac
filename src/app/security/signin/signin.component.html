@@ -1,0 +1,57 @@
+<div class="wraper">
+  <form class="mat-typography"
+    autocomplete="off"
+    novalidate
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+    matTypography>
+    <div class="header">
+      <img class="logo" src="assets/logo.png">
+      <h3 class="title">Loan Origination</h3>
+    </div>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email"
+      matInput
+        formControlName="email"
+        required
+        [errorStateMatcher]="matcher"
+        autocomplete="off">
+      <mat-error *ngIf="email.hasError('required')">
+        Email is
+        <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="email.hasError('email')">
+        Invalid email address
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input type="password"
+          formControlName="password"
+          matInput
+          required
+          [errorStateMatcher]="matcher"
+          autocomplete="off">
+      <mat-error *ngIf="password.hasError('required')">
+        Please enter password
+      </mat-error>
+    </mat-form-field>
+
+    <mat-error class="error-summary" *ngIf="error">
+      Incorrect user name / password
+    </mat-error>
+
+    <div class="btn-action">
+      <button mat-raised-button
+        class="submit-button"
+        color="primary"
+        type="submit"
+        [disabled]="loginForm.invalid">
+        Sign in
+      </button>
+    </div>
+
+  </form>
+</div>

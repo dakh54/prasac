@@ -1,0 +1,96 @@
+<mat-sidenav-container class="sidenav-container mat-typography">
+  <mat-sidenav #drawer
+      class="sidenav" fixedInViewport="true"
+      color="primary"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar class="primary">
+        <!-- <span class="display-3">{{title}}</span> -->
+        <img class="logo" src="assets/logo.png">
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item
+        [routerLink]="['/users/register']"
+        appPrimaryClass
+        *appHasRole="'CanAccessEmployee'"
+        (click)="selected = 'employees'"
+        [ngClass]="{'active': selected === 'employees'}">
+        Employees
+        <span class="spacer"></span>
+        <mat-icon>person_add</mat-icon>
+      </a>
+      <a mat-list-item
+        appPrimaryClass
+        (click)="selected = 'leads'"
+        [ngClass]="{'active': selected === 'leads'}">
+        <span  matBadge="4" matBadgeColor="warn"
+          matBadgePosition="after"
+          matBadgeOverlap="false"
+          matBadgeSize="medium"
+        >Leads</span>
+        <span class="spacer"></span>
+        <mat-icon>contacts</mat-icon>
+        </a>
+      <a mat-list-item
+        appPrimaryClass
+        (click)="selected = 'pending'"
+        [ngClass]="{'active': selected === 'pending'}">
+
+        <span  matBadge="4" matBadgeColor="accent"
+          matBadgePosition="after"
+          matBadgeOverlap="false"
+          matBadgeSize="medium">
+          Pending
+        </span>
+        <span class="spacer"></span>
+        <mat-icon>av_timer</mat-icon>
+      </a>
+      <a mat-list-item
+        appPrimaryClass
+        (click)="selected = 'rejected'"
+        [ngClass]="{'active': selected === 'rejected'}">
+        Rejected
+      </a>
+      <a mat-list-item
+        appPrimaryClass
+        (click)="selected = 'approved'"
+        [ngClass]="{'active': selected === 'approved'}">
+        Approved
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content >
+    <mat-toolbar class="primary">
+        <mat-toolbar-row>
+          <button type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon" >
+              <img class="logo" src="assets/logo.png">
+          </mat-icon>
+        </button>
+        <!-- <span *ngIf="isHandset$ | async" class="display-3">{{title}}</span> -->
+        <span class="spacer"></span>
+
+        <button mat-button [matMenuTriggerFor]="menu"
+          class="display-3"
+          appPrimaryClass
+          >
+          {{authService?.getFirstName()}}
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Change password</button>
+          <button mat-menu-item
+            (click)="signOut()">
+            Sign out
+          </button>
+        </mat-menu>
+      </mat-toolbar-row>
+
+    </mat-toolbar>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

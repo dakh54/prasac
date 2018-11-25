@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$prasac-app-primary: mat-palette($mat-green, 500);
+$prasac-app-accent:  mat-palette($mat-yellow, 500);
+$prasac-app-warn: mat-palette($mat-red);
+
+
+$prasac-app-theme: mat-light-theme($prasac-app-primary, $prasac-app-accent, $prasac-app-warn);
+
+
+
+@include angular-material-theme($prasac-app-theme);

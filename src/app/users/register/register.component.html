@@ -1,0 +1,146 @@
+<form class="form-wrapper"
+  autocomplete="off"
+  #myForm="ngForm"
+  [formGroup]="newEmployeeForm"
+  novalidate (ngSubmit)="save()">
+
+  <h3 class="title">Register New Employee</h3>
+  <div class="user-new-container">
+
+    <div class="colum-1">
+      <!-- first name -->
+      <mat-form-field appearance="standard">
+        <mat-label>First name</mat-label>
+        <input matInput formControlName="firstName" required>
+        <mat-error *ngIf="firstNameCtrl.hasError('required')">
+          First name is
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- last name -->
+      <mat-form-field appearance="standard">
+        <mat-label>Last name</mat-label>
+        <input matInput formControlName="lastName" required>
+        <mat-error *ngIf="lastNameCtrl.hasError('required')">
+          Last name is
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- application role -->
+      <mat-form-field appearance="standard">
+        <mat-label>Roles</mat-label>
+        <mat-select formControlName="roles" required [errorStateMatcher]="matcher">
+          <mat-option *ngFor="let role of roles" [value]="role.name">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="rolesCtrl.hasError('required')">
+          Role is
+          <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="rolesCtrl.hasError('pattern')
+                  && !rolesCtrl.hasError('required')">
+          Your selection is invalid
+        </mat-error>
+      </mat-form-field>
+
+      <!-- employee id -->
+      <mat-form-field appearance="standard">
+        <mat-label>Employee Id / CO Code</mat-label>
+        <input matInput formControlName="employeeId" required>
+        <mat-error *ngIf="employeeIdCtrl.hasError('exist')
+                        && employeeIdCtrl.invalid
+                        && !employeeIdCtrl.hasError('required')">
+             Not available
+          </mat-error>
+        <mat-error *ngIf="employeeIdCtrl.hasError('required')">
+          Employee id is
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- home office -->
+      <mat-form-field appearance="standard">
+        <mat-label>Home Office</mat-label>
+        <mat-select formControlName="homeOffice"
+          [errorStateMatcher]="matcher"
+          required>
+          <mat-option *ngFor="let branch of branches"
+            [value]="branch.name">
+            {{ branch.name }}
+          </mat-option>
+        </mat-select>
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="homeOfficeCtrl.hasError('required')">
+          Home office is
+          <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="homeOfficeCtrl.hasError('pattern')
+            && !homeOfficeCtrl.hasError('required')">
+          Your selection is invalid
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div class="colum-2">
+      <!-- national id -->
+      <mat-form-field appearance="standard">
+        <mat-label>National Id</mat-label>
+        <input matInput formControlName="nationalId">
+      </mat-form-field>
+
+      <!-- primary phone -->
+      <mat-form-field appearance="standard">
+        <mat-label>Primary Phone</mat-label>
+        <input matInput formControlName="primaryPhone">
+      </mat-form-field>
+
+      <!-- secondary phone -->
+      <mat-form-field appearance="standard">
+        <mat-label>Secondary Phone</mat-label>
+        <input matInput formControlName="secondaryPhone">
+      </mat-form-field>
+
+      <!-- email -->
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput
+          formControlName="email"
+          required
+          [errorStateMatcher]="matcher">
+        <mat-hint></mat-hint>
+
+        <mat-error
+            *ngIf="emailCtrl.hasError('exist')
+            && emailCtrl.invalid
+            && !emailCtrl.hasError('required')">
+          Email is not available
+        </mat-error>
+
+        <mat-error *ngIf="emailCtrl.hasError('email')
+            && !emailCtrl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailCtrl.hasError('required')">
+          Email is
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+      <div class="footer">
+        <button mat-raised-button type="button">
+          Cancel
+        </button>
+        <button type="submit" mat-raised-button color="warn">
+          Save
+        </button>
+      </div>
+
+    </div>
+   </div>
+</form>

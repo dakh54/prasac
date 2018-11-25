@@ -1,0 +1,136 @@
+
+.container {
+    background-color: #455560;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+   }
+
+
+   .description {
+       display: flex;
+       flex-direction: column;
+   }
+
+
+   @media(min-width: 1024px) {
+      .description {
+          width: 75%;
+      }
+       .title {
+           h1 {
+               font-size: 100px;
+           }
+       }
+   }
+
+   @media(min-width: 361px) {
+       .description {
+           width: 80%;
+       }
+
+       .title {
+        h1 {
+            font-size: 40px;
+        }
+    }
+   }
+
+
+    @media(max-width: 361px) {
+       .description {
+           width: 80%;
+       }
+
+       .title {
+           h1 {
+               font-size: 40px;
+           }
+       }
+
+    }
+
+    @media(max-width: 321px) {
+       .description {
+           width: 90%;
+       }
+
+       .title {
+           h1 {
+               font-size: 30px;
+           }
+       }
+
+    }
+
+
+
+   //  @media(max-width: 520px) {
+   //     .title {
+   //         h1 {
+   //             font-size: 70px;
+   //         }
+   //     }
+   //  }
+
+
+
+   .title {
+       display: flex;
+       justify-content: flex-start;
+       flex-wrap: wrap;
+       h1 {
+           margin-right: 25px;
+           // font-size: 100px;
+           font-weight: 500;
+       }
+       margin-bottom: 25px;
+   }
+
+
+   .start-left {
+       align-self: flex-start;
+   }
+
+   .details-error {
+       font-size: 26px;
+       font-weight: 250;
+       // margin-top: 20px;
+       // margin-bottom: 20px;
+       line-height: 1.5em;
+   }
+
+   // .error-code {
+   //     font-size: 18px;
+   //     color: #ff3838;
+   //     margin-bottom: 20px;
+   // }
+
+   // button {
+   //     margin-top: 25px;
+   //     background-color: white;
+   //     color: #455560;
+   //     align-self: flex-start;
+   //     margin-right: 5px;
+   // }
+
+   .warn {
+       color: yellow;
+   }
+
+   .btn-toolbar {
+       display: flex;
+       justify-content: flex-start;
+       margin-top: 20px;
+       button {
+           background-color: white;
+           color: #455560;
+           margin-right: 5px;
+           margin-top: 5px;
+       }
+   }
