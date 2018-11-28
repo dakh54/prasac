@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './core/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { SigninResolverService } from './security/signin/signin-resolver.service';
 import { SigninComponent } from './security/signin/signin.component';
 import { ForbiddenComponent } from './shared/error/forbidden/forbidden.component';
 import { PageNotFoundComponent } from './shared/error/page-not-found/page-not-found.component';
@@ -12,14 +13,9 @@ const routes: Routes = [
   {
     path: 'signin',
     component: SigninComponent
-  },
-  {
-    path: 'users',
-    loadChildren: './users/user.module#UserModule'
-  },
-  {
-    path: 'leads',
-    loadChildren: './leads/lead.module#LeadModule'
+    // resolve: {
+    //   user: SigninResolverService
+    // }
   },
   {
     path: 'home',
@@ -28,6 +24,14 @@ const routes: Routes = [
     data: {
       role: 'CanAccessHome'
     }
+  },
+  {
+    path: 'users',
+    loadChildren: './users/user.module#UserModule'
+  },
+  {
+    path: 'leads',
+    loadChildren: './leads/lead.module#LeadModule'
   },
   {
     path: 'branches',
@@ -42,6 +46,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }

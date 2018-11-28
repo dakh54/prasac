@@ -1,9 +1,7 @@
-import { IWork } from '../shared/models/iwork';
+import { IAddress } from '../shared/models/iaddress';
 
 export interface IBranch {
-    name: string;
-    phone?: string;
-    address?: string;
-    employees?: number;
-    myWork?: IWork;
+    branch: string;
+    code: string;
+    address?: IAddress;
 }

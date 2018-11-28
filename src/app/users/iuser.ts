@@ -1,5 +1,3 @@
-import { IWork } from '../shared/models/iwork';
-
 export interface IUser {
     uid: number;
     nationalId?: number;
@@ -11,5 +9,4 @@ export interface IUser {
     phoneNumber?: string;
     emailVerified?: boolean;
     roles?: string [];
-    myWorks?: IWork;
 }

@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AuthService } from 'src/app/core/auth.service';
 import { MyErrorStateMatcher } from 'src/app/shared/MyErrorStateMatcher';
-import { IUser } from 'src/app/users/iuser';
+import { IUser } from 'src/app/users/models/iuser';
 
 @Component({
   selector: 'app-signin',

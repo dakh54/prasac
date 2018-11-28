@@ -1,5 +1,6 @@
 <mat-sidenav-container class="sidenav-container mat-typography">
   <mat-sidenav #drawer
+      *ngIf="authService.user"
       class="sidenav" fixedInViewport="true"
       color="primary"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -23,6 +24,7 @@
       <a mat-list-item
         appPrimaryClass
         (click)="selected = 'leads'"
+        [routerLink]="['/leads', 'new']"
         [ngClass]="{'active': selected === 'leads'}">
         <span  matBadge="4" matBadgeColor="warn"
           matBadgePosition="after"
@@ -60,25 +62,25 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content >
-    <mat-toolbar class="primary">
+    <mat-toolbar class="primary fix-top" >
         <mat-toolbar-row>
           <button type="button"
           aria-label="Toggle sidenav"
           mat-icon-button
-          (click)="drawer.toggle()"
+          (click)="toggleSidenav()"
           *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon" >
+          <mat-icon aria-label="Side nav toggle icon"
+              *ngIf="authService.user">
               <img class="logo" src="assets/logo.png">
           </mat-icon>
         </button>
         <!-- <span *ngIf="isHandset$ | async" class="display-3">{{title}}</span> -->
         <span class="spacer"></span>
-
         <button mat-button [matMenuTriggerFor]="menu"
           class="display-3"
-          appPrimaryClass
-          >
+          appPrimaryClass>
           {{authService?.getFirstName()}}
         </button>
         <mat-menu #menu="matMenu">
@@ -89,8 +91,7 @@
           </button>
         </mat-menu>
       </mat-toolbar-row>
-
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

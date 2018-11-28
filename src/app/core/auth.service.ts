@@ -2,9 +2,11 @@ import { error } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { BehaviorSubject } from 'rxjs';
 
 import { ICredential } from '../security/icredential';
-import { IUser } from '../users/iuser';
+import { IUser } from '../users/models/iuser';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +16,11 @@ export class AuthService {
   authenticated = false;
   user: IUser = null;
   localStorageName = 'prasac_lori';
-
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router
   ) {
+
     this.afAuth.auth.onAuthStateChanged(_user => {
       if (_user) {
         this.authenticated = true;
@@ -30,7 +32,9 @@ export class AuthService {
   }
 
   hasRole(role: string) {
-    if (this.user.roles && this.user.roles.indexOf(role) >= 0) {
+    if (this.user
+        && this.user.roles
+        && this.user.roles.indexOf(role) >= 0) {
       return true;
     }
     return false;
@@ -42,14 +46,15 @@ export class AuthService {
   }
 
   signout() {
-    this.resetState();
     this.afAuth.auth.signOut();
+    this.resetState();
     this.router.navigate(['/signin']);
   }
 
   resetState() {
     this.authenticated = false;
     this.user = null;
+    this.clearLocalStorage();
   }
 
   getFirstName(): string {
@@ -61,7 +66,7 @@ export class AuthService {
 
   setUser(user: IUser) {
     if (user) {
-      this.user = user;
+      this.user = Object.assign({}, user);
     }
   }
 

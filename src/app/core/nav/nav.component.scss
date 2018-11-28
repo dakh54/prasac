@@ -48,6 +48,10 @@ mat-nav-list {
   color: white !important;
 }
 
-.value {
-  border-radius: 5px;
+.fix-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }

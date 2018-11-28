@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IUser } from './iuser';
+import { IUser } from './models/iuser';
 
 
 @Injectable()
