@@ -1,7 +1,8 @@
+import { IBranch } from 'src/app/branches/ibranch';
 import { IAddress } from 'src/app/shared/models/iaddress';
+import { IUser } from 'src/app/users/models/iuser';
 
-export interface ILead {
-    id: string;
+export interface ILeadCreate {
     firstName: string;
     lastName: string;
     requestedServices?: string [];
@@ -11,6 +12,7 @@ export interface ILead {
     phones?: string [];
     email?: string;
     comment?: string;
-    officer?: string;
-    createdAt?: Date;
+    createdBy: IUser;
+    createdAt?: any;
+    branchCode: string;
 }

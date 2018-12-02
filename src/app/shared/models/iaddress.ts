@@ -5,6 +5,5 @@ export interface IAddress {
     commune?: string
     khan?: string
     city?: string
-    country?: string
-    phones?: string [];
+    // country?: string
 }

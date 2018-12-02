@@ -6,6 +6,10 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AuthService } from 'src/app/core/auth.service';
 import { MyErrorStateMatcher } from 'src/app/shared/MyErrorStateMatcher';
 import { IUser } from 'src/app/users/models/iuser';
+import { environment } from 'src/environments/environment';
+
+import { IError } from './../../shared/models/ierror';
+
 
 @Component({
   selector: 'app-signin',
@@ -16,8 +20,10 @@ export class SigninComponent implements OnInit {
 
   loginForm: FormGroup;
   matcher = new MyErrorStateMatcher();
-  error: any;
+  error: IError = {};
   returnUrl: string;
+  userCollections = environment.userCollection;
+
   constructor(private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
@@ -45,23 +51,32 @@ export class SigninComponent implements OnInit {
       this.authService.signin(credential)
       .then(
          user => {
-          //  this.authService.setUser();
-
-           let _user = this.fireStore.doc(`users/${this.afAuth.auth.currentUser.email}`);
+           let _user = this.fireStore.doc(`${this.userCollections}/${this.afAuth.auth.currentUser.email}`);
             _user.valueChanges().subscribe(
               (data: IUser) => {
-                this.authService.user = data;
-                this.error = null;
-                this.authService.setLocalStorage(data);
-                this.router.navigate(['/home']);
+                if (data) {
+                  this.authService.user = Object.assign({},{
+                    id: data.id,
+                    displayName: data.displayName,
+                    photoURL: data.photoURL,
+                    roles: data.roles
+                  });
+                  this.error = null;
+                  this.authService.setLocalStorage(this.authService.user);
+                  this.router.navigate(['/home']);
+                } else {
+                  this.error.errorNumber = 404;
+                }
               }, error => {
                 console.log('error', error);
+                this.error.errorNumber = 404;
               });
          }
       ).catch(
         err => {
           console.log('err', err);
-          this.error = err;
+          this.error.errorNumber = 500;
+          this.error.friendlyMessage = "Internal server error";
         }
       )
     }

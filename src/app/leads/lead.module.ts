@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatCheckboxModule, MatSelectModule } from '@angular/material';
+import {
+  MatAutocompleteModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule
+} from '@angular/material';
 
 import { BranchService } from '../branches/branch.service';
 import { SharedModule } from '../shared/shared.module';
@@ -18,7 +24,10 @@ import { LeadService } from './lead.service';
     LeadRoutingModule,
     SharedModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatAutocompleteModule
   ],
   providers: [
     BranchService,

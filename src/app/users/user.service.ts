@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IUser } from './models/iuser';
+
 
 
 @Injectable()
@@ -20,7 +20,7 @@ export class UserService {
 
   constructor() { }
 
-  createNewUser(user: IUser) {
+  createNewUser() {
 
   }
 }
