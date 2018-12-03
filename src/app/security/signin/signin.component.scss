@@ -13,6 +13,11 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+
+      mat-checkbox {
+        align-self: flex-start;
+        margin-top: 10px;
+      }
     }
 
   .header {
@@ -25,17 +30,26 @@
     }
   }
 
+  .btn-action {
+    margin-top: 10px;
+
+    .submit-button {
+      margin-right: 10px;
+    }
+  }
 
 
     @media (max-width: 420px) {
       mat-form-field,
       .logo,
       .error-summary,
+
       .btn-action {
         width: 100%;
         flex: 1 1 auto;
-        margin-top: 5px;
+        margin-top: 10px;
       }
+
       .submit-button {
         width: 100%;
       }

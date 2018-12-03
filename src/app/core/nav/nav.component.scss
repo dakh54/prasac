@@ -1,9 +1,12 @@
+$backgroundColor: #dcedc8 !important;
+
 .sidenav-container {
   height: 100%;
 }
 
 .sidenav {
   width: 200px;
+  // background-color:$backgroundColor;
 }
 
 .sidenav .mat-toolbar {
@@ -21,12 +24,12 @@
 }
 
 .primary {
-  background-color: #dcedc8 !important;
+  background-color: $backgroundColor;
   color: white !important;
 }
 
 mat-icon {
-  padding: 0 14px;
+  padding: 0 20px 0 14px;
 }
 
 

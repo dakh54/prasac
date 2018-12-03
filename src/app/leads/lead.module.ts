@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
@@ -20,7 +19,6 @@ import { LeadService } from './lead.service';
     LeadNewComponent
   ],
   imports: [
-    CommonModule,
     LeadRoutingModule,
     SharedModule,
     MatCheckboxModule,

@@ -1,59 +1,74 @@
-mat-card, .container {
-    width: auto;
-    // top: 10px;
-    // left: 50px;
-    height: auto;
-    padding: 20px 30px;
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-    justify-content: center;
+mat-card,
+.container {
+  width: auto;
+  height: auto;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  justify-content: center;
 
-    h2 {
-      text-align: center;
-    }
+  h2 {
+    text-align: center;
   }
+}
 
 .center-base {
   align-items: baseline;
 }
 
-  .form {
-    min-width: 160px;
-    display: flex;
-    flex-direction: column;
-  }
+.form {
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+}
 
- .margin-spacer {
-    margin: 0 25px;
-  }
+.margin-spacer {
+  margin: 0 25px;
+}
 
-  .section {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
+.one-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 
-
-
-  .section > mat-form-field {
-    margin: 5px;
-    flex: 1 1 0;
-  }
-
-  .full-width {
-    min-width: 100%;
-  }
-
-  .footer {
-    display: flex;
-    justify-content: flex-end;
-    button {
-      margin-left: 10px;
-    }
-  }
-
-  .spacer {
+  mat-checkbox {
     flex: 1 1 auto;
   }
+}
+
+
+.section {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.section > mat-form-field {
+  margin: 5px;
+  flex: 1 1 0;
+}
+
+.full-width {
+  min-width: 100%;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    margin-left: 10px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+@media(max-width: 430px) {
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

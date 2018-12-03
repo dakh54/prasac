@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 import { UserCustomValidator } from '../user-custom-validator';
+import { MyErrorStateMatcher } from './../../shared/MyErrorStateMatcher';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,7 @@ import { UserCustomValidator } from '../user-custom-validator';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
   @ViewChild('myForm') myNgForm;
   newEmployeeForm: FormGroup;
 
@@ -17,6 +19,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private afs: AngularFirestore
   ) { }
+
+  matcher = new MyErrorStateMatcher();
 
   ngOnInit() {
   }

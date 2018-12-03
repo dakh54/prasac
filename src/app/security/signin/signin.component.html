@@ -1,5 +1,6 @@
 <div class="wraper">
   <form class="mat-typography"
+    #myForm="ngForm"
     autocomplete="off"
     novalidate
     [formGroup]="loginForm"
@@ -26,7 +27,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field  *ngIf="!OnResetPassword">
       <mat-label>Password</mat-label>
       <input type="password"
           formControlName="password"
@@ -38,19 +39,32 @@
         Please enter password
       </mat-error>
     </mat-form-field>
+    <mat-checkbox formControlName="forgetPassword" color="primary">
+      Forgot password
+    </mat-checkbox>
 
     <mat-error class="error-summary" *ngIf="error.errorNumber">
       Incorrect user name / password
     </mat-error>
-
     <div class="btn-action">
       <button mat-raised-button
         appWhiteClass
+        *ngIf="!OnResetPassword"
         class="submit-button"
         color="primary"
         type="submit"
         [disabled]="loginForm.invalid">
         Sign in
+      </button>
+      <button mat-raised-button
+        appWhiteClass
+        color="primary"
+        type="button"
+        [disabled]="email.hasError('required') || email.hasError('email')"
+        class="submit-button"
+        (click)="resetPassword()"
+        *ngIf="OnResetPassword">
+        Reset password
       </button>
     </div>
 

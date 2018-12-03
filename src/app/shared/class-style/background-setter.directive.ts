@@ -20,7 +20,8 @@ export class BackgroundSetterDirective implements OnInit {
 
     if (this.elm) {
       if (this.statusBackgroundColor === 'primary') {
-        this.rend.setStyle(this.elm, 'background-color', '#1565c0');
+        // this.rend.setStyle(this.elm, 'background-color', '#1565c0');
+        this.rend.setStyle(this.elm, 'background-color', '#4caf50');
         this.rend.setStyle(this.elm, 'color', 'white');
       } else if (this.statusBackgroundColor === 'accent') {
         this.rend.setStyle(this.elm, 'background-color', '#ff4081');

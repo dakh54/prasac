@@ -7,6 +7,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,8 +15,11 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { LeadModule } from './leads/lead.module';
 import { SigninComponent } from './security/signin/signin.component';
+import { InfoComponent } from './shared/dialog/info/info.component';
 import { HttpInterceptorService } from './shared/services/http-interceptor.service';
 import { SharedModule } from './shared/shared.module';
+import { ChangePasswordComponent } from './users/change-password/change-password.component';
+
 
 
 
@@ -42,6 +46,7 @@ const firebaseConfig = {
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    ToastrModule.forRoot(),
     SharedModule,
     CoreModule,
     LeadModule
@@ -50,6 +55,10 @@ const firebaseConfig = {
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
+  ],
+  entryComponents: [
+    InfoComponent,
+    ChangePasswordComponent
   ],
   bootstrap: [AppComponent]
 })

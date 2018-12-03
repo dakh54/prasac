@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 import { IUser } from '../users/models/iuser';
 import { AuthService } from './auth.service';
+
 
 
 @Injectable({
@@ -52,7 +54,9 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
-    if (this.authService.hasRole(role)) {
+
+    if (role === environment.anonymousAccess
+        ||this.authService.hasRole(role)) {
       return true;
     }
 

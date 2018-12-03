@@ -1,189 +1,263 @@
 <div class="mat-typography container">
-    <h2>New Lead</h2>
+  <h2>New Lead</h2>
 
-      <form class="form" [formGroup]="newLeadForm" novalidate #newLeadNgForm="ngForm">
-        <div class="section center-base">
-            <label>Requested Services *:</label>
-            <div class="margin-spacer">
-              <div formGroupName="requestedServices">
-                <mat-checkbox
-                class="margin-spacer"
-                color="primary"
-                formControlName="loan">Loan</mat-checkbox>
-                <mat-checkbox
-                class="margin-spacer"
-                color="primary"
-                formControlName="saving">Saving</mat-checkbox>
-                <span class="spacer"></span>
-              </div>
-              <mat-error class="margin-spacer" *ngIf="checkBoxValues.length === 0">
-                Please select one.
-              </mat-error>
-            </div>
+  <form
+    class="form"
+    [formGroup]="newLeadForm"
+    novalidate
+    #newLeadNgForm="ngForm"
+  >
+    <div class="section center-base">
+      <label>Requested Services *:</label>
 
-            <mat-form-field appearance="standard">
-              <mat-label>Service requested due date *</mat-label>
-              <input matInput
-                [matDatepicker]="picker" [min]="minDate"
-                  (keypress)="focusFirstNameField($event)"
-                #requestedServiceDateView formControlName="requestedServiceDate">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <mat-hint>
-                Hint: Required and cannot be older than {{minDate | date:'shortDate'}}
-              </mat-hint>
-              <mat-error *ngIf="requestedServiceDate.hasError('mindate')">
-                Cannot be older than {{minDate | date:'shortDate'}}
-              </mat-error>
-            </mat-form-field>
-        </div>
+      <div formGroupName="requestedServices" class="margin-spacer one-row">
+        <mat-checkbox
+          class="margin-spacer"
+          color="primary"
+          formControlName="loan"
+          >Loan</mat-checkbox
+        >
+        <mat-checkbox
+          class="margin-spacer"
+          color="primary"
+          formControlName="saving"
+          >Saving</mat-checkbox
+        >
+        <span class="spacer"></span>
 
-        <div class="section">
-          <mat-form-field class="" appearance="standard">
-            <mat-label>First Name</mat-label>
-            <input matInput formControlName="firstName" #firstNameView
-              (keypress)="focusLastNameField($event)"
-              required [errorStateMatcher]="matcher" required>
-            <mat-error *ngIf="firstName.hasError('required')">
-              First name is
-              <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+        <mat-error class="margin-spacer" *ngIf="checkBoxValues.length === 0">
+          Please select one.
+        </mat-error>
+      </div>
 
-          <mat-form-field class="" appearance="standard">
-            <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lastName" #lastNameView
-              (keypress)="focusEmailField($event)"
-              required [errorStateMatcher]="matcher" required>
-            <mat-error *ngIf="lastName.hasError('required')">
-              Last name is
-              <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Service requested due date *</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [min]="minDate"
+          (keypress)="focusFirstNameField($event)"
+          #requestedServiceDateView
+          formControlName="requestedServiceDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-hint>
+          Hint: Required and cannot be older than
+          {{ minDate | date: 'shortDate' }}
+        </mat-hint>
+        <mat-error *ngIf="requestedServiceDate.hasError('mindate')">
+          Cannot be older than {{ minDate | date: 'shortDate' }}
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-          <mat-form-field appearance="standard">
-              <mat-label>Email </mat-label>
-              <input color="primary" matInput formControlName="email" #emailView
-              [errorStateMatcher]="matcher"
-              (keypress)="focusLocationNumberField($event)">
-              <mat-error *ngIf="email.hasError('email')">Invalid email</mat-error>
-              <mat-hint>Hint: jd@gmail.com</mat-hint>
-            </mat-form-field>
-        </div>
+    <div class="section">
+      <mat-form-field class="" appearance="standard">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          formControlName="firstName"
+          #firstNameView
+          (keypress)="focusLastNameField($event)"
+          required
+          [errorStateMatcher]="matcher"
+          required
+        />
+        <mat-error *ngIf="firstName.hasError('required')">
+          First name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
-        <div formGroupName="address">
-          <div class="section">
-            <mat-form-field class="" appearance="standard">
-              <mat-label>House Number</mat-label>
-              <input matInput formControlName="locationNumber"
-                #locationNumberView (keypress)="focusStreetField($event)">
-            </mat-form-field>
+      <mat-form-field class="" appearance="standard">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          formControlName="lastName"
+          #lastNameView
+          (keypress)="focusEmailField($event)"
+          required
+          [errorStateMatcher]="matcher"
+          required
+        />
+        <mat-error *ngIf="lastName.hasError('required')">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field class="" appearance="standard">
-              <mat-label>Street</mat-label>
-              <input matInput formControlName="street" #streetView
-              (keypress)="focusVillageField($event)">
-            </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Email </mat-label>
+        <input
+          color="primary"
+          matInput
+          formControlName="email"
+          #emailView
+          [errorStateMatcher]="matcher"
+          (keypress)="focusLocationNumberField($event)"
+        />
+        <mat-error *ngIf="email.hasError('email')">Invalid email</mat-error>
+        <mat-hint>Hint: jd@gmail.com</mat-hint>
+      </mat-form-field>
+    </div>
 
-            <mat-form-field class="" appearance="standard">
-              <mat-label>Village</mat-label>
-              <input matInput formControlName="village" #villageView
-              (keypress)="focusCommuneField($event)">
-            </mat-form-field>
-          </div>
+    <div formGroupName="address">
+      <div class="section">
+        <mat-form-field class="" appearance="standard">
+          <mat-label>House Number</mat-label>
+          <input
+            matInput
+            formControlName="locationNumber"
+            #locationNumberView
+            (keypress)="focusStreetField($event)"
+          />
+        </mat-form-field>
 
-          <div class="section">
-            <mat-form-field class="" appearance="standard">
-              <mat-label>Commune/Sangkat</mat-label>
-              <input matInput formControlName="commune" #communeView
-              (keypress)="focusKhanField($event)">
-            </mat-form-field>
+        <mat-form-field class="" appearance="standard">
+          <mat-label>Street</mat-label>
+          <input
+            matInput
+            formControlName="street"
+            #streetView
+            (keypress)="focusVillageField($event)"
+          />
+        </mat-form-field>
 
-            <mat-form-field class="" appearance="standard">
-              <mat-label>Khan</mat-label>
-              <input matInput formControlName="khan" #khanView
-              (keypress)="focusCityField($event)">
-            </mat-form-field>
+        <mat-form-field class="" appearance="standard">
+          <mat-label>Village</mat-label>
+          <input
+            matInput
+            formControlName="village"
+            #villageView
+            (keypress)="focusCommuneField($event)"
+          />
+        </mat-form-field>
+      </div>
 
-            <mat-form-field appearance="standard">
+      <div class="section">
+        <mat-form-field class="" appearance="standard">
+          <mat-label>Commune/Sangkat</mat-label>
+          <input
+            matInput
+            formControlName="commune"
+            #communeView
+            (keypress)="focusKhanField($event)"
+          />
+        </mat-form-field>
 
-              <mat-select placeholder="City/Province"
-                  formControlName="city" #cityView
-                  [errorStateMatcher]="matcher"
-                  (keypress)="focusPrimaryPhoneField($event)">
-                <mat-option *ngFor="let branch of branches | async"
-                    [value]="branch">
-                    {{ branch.branch }}
-                </mat-option>
-              </mat-select>
-              <!--<mat-label>City/Province</mat-label>
+        <mat-form-field class="" appearance="standard">
+          <mat-label>Khan</mat-label>
+          <input
+            matInput
+            formControlName="khan"
+            #khanView
+            (keypress)="focusCityField($event)"
+          />
+        </mat-form-field>
 
-               <input type="text"
-                matInput formControlName="city" #cityView
-                autocomplete="off" (keypress)="focusPrimaryPhoneField($event)"
-                [matAutocomplete]="autoName"
-                [errorStateMatcher]="matcher" required>
-              <mat-autocomplete autoActiveFirstOption #autoName="matAutocomplete"
-                [displayWith]="displayBranch">
-                  <mat-option *ngFor="let branch of branchService.provinces"
-                  [value]="branch">
-                  {{ branch.branch }}
-                </mat-option>
-              </mat-autocomplete> -->
-              <mat-error *ngIf="city.hasError('required')">
-                City/Province is
-                <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="city.hasError('pattern')
-                    && !city.hasError('required')">
-                Your selection is invalid
-              </mat-error>
-            </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-select
+            placeholder="City/Province"
+            formControlName="city"
+            #cityView
+            [errorStateMatcher]="matcher"
+            (keypress)="focusPrimaryPhoneField($event)"
+          >
+            <mat-option
+              *ngFor="let branch of (branches | async)"
+              [value]="branch"
+            >
+              {{ branch.branch }}
+            </mat-option>
+          </mat-select>
+          <!--
+            <mat-label>City/Province</mat-label>
 
-          </div>
-        </div>
+             <input type="text"
+              matInput formControlName="city" #cityView
+              autocomplete="off" (keypress)="focusPrimaryPhoneField($event)"
+              [matAutocomplete]="autoName"
+              [errorStateMatcher]="matcher" required>
+            <mat-autocomplete autoActiveFirstOption #autoName="matAutocomplete"
+              [displayWith]="displayBranch">
+                <mat-option *ngFor="let branch of branchService.provinces"
+                [value]="branch">
+                {{ branch.branch }}
+              </mat-option>
+            </mat-autocomplete>
+          -->
+          <mat-error *ngIf="city.hasError('required')">
+            City/Province is <strong>required</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="city.hasError('pattern') && !city.hasError('required')"
+          >
+            Your selection is invalid
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
+    <div class="section" formGroupName="phones">
+      <mat-form-field class="" appearance="standard">
+        <mat-label>Primary Phone</mat-label>
+        <input
+          matInput
+          formControlName="primaryPhone"
+          #primaryPhoneView
+          (keypress)="focusSecondaryPhoneField($event)"
+        />
+      </mat-form-field>
 
-        <div class="section" formGroupName="phones">
-          <mat-form-field class="" appearance="standard">
-            <mat-label>Primary Phone</mat-label>
-            <input matInput formControlName="primaryPhone"
-              #primaryPhoneView (keypress)="focusSecondaryPhoneField($event)">
-          </mat-form-field>
+      <mat-form-field class="" appearance="standard">
+        <mat-label>Secondary Phone</mat-label>
+        <input
+          matInput
+          formControlName="secondaryPhone"
+          #secondaryPhoneView
+          (keypress)="focusThirdPhoneField($event)"
+        />
+      </mat-form-field>
 
-          <mat-form-field class="" appearance="standard">
-            <mat-label>Secondary Phone</mat-label>
-            <input matInput formControlName="secondaryPhone"
-            #secondaryPhoneView (keypress)="focusThirdPhoneField($event)">
-          </mat-form-field>
+      <mat-form-field class="" appearance="standard">
+        <mat-label>Third Phone</mat-label>
+        <input
+          matInput
+          formControlName="thirdPhone"
+          #thirdPhoneView
+          (keypress)="focusCommentField($event)"
+        />
+      </mat-form-field>
+    </div>
 
-          <mat-form-field class="" appearance="standard">
-            <mat-label>Third Phone</mat-label>
-            <input matInput formControlName="thirdPhone"
-              #thirdPhoneView (keypress)="focusCommentField($event)">
-          </mat-form-field>
-        </div>
+    <div class="section">
+      <mat-form-field class="full-width" appearance="standard">
+        <mat-label>Comments</mat-label>
+        <textarea
+          matInput
+          formControlName="comment"
+          #commentView
+          [matTextareaAutosize]="true"
+        ></textarea>
+      </mat-form-field>
+    </div>
 
-        <div class="section">
-          <mat-form-field class="full-width" appearance="standard">
-            <mat-label>Comments</mat-label>
-            <textarea matInput formControlName="comment" #commentView
-              [matTextareaAutosize]="true"></textarea>
-          </mat-form-field>
-        </div>
-
-
-        <div class="footer">
-            <button mat-raised-button type="submit"
-              [routerLink]="['/leads']">
-                Close
-              </button>
-          <button mat-raised-button type="submit"
-            appWhiteClass color="primary" (click)="save()"
-            [disabled]="!newLeadForm.valid
-              || (newLeadForm.valid && checkBoxValues.length === 0)">
-            Save
-          </button>
-        </div>
-      </form>
-  </div>
+    <div class="footer">
+      <button mat-raised-button type="submit" [routerLink]="['/leads']">
+        Close
+      </button>
+      <button
+        mat-raised-button
+        type="submit"
+        appWhiteClass
+        color="primary"
+        (click)="save()"
+        [disabled]="
+          !newLeadForm.valid ||
+          (newLeadForm.valid && checkBoxValues.length === 0)
+        "
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

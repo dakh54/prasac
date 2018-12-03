@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  companyName: 'PRASAC',
+  appName: 'Loan Orignination',
+  anonymousAccess: 'AnonymousAccess',
   leadCollections: 'leads',
   leadHistoryCollection: 'leadHistories',
   brachCollection: 'branches',

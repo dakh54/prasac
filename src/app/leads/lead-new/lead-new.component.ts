@@ -5,13 +5,10 @@ import { BranchService } from 'src/app/branches/branch.service';
 import { IBranch } from 'src/app/branches/ibranch';
 import { FormBuilderHelper } from 'src/app/shared/form-builder-helper';
 import { MyErrorStateMatcher } from 'src/app/shared/MyErrorStateMatcher';
-import { GetUniqueLeadId } from 'src/app/shared/unique-id-generator';
 import { MinDateValidator } from 'src/app/shared/validator-custom';
 
 import { LeadService } from '../lead.service';
 import { AuthService } from './../../core/auth.service';
-import { UserCustomValidator } from './../../users/user-custom-validator';
-import { UserService } from './../../users/user.service';
 import { ILeadCreate } from './../models/ilead-create';
 
 
@@ -46,7 +43,7 @@ export class LeadNewComponent implements OnInit {
   branches: Observable<IBranch []>;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private fb: FormBuilder,
     public branchService: BranchService,
     private leadService: LeadService) {}
