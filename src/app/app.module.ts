@@ -1,7 +1,7 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
+import { ErrorStateMatcher, MatIconRegistry, ShowOnDirtyErrorStateMatcher } from '@angular/material';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -15,6 +15,9 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { LeadModule } from './leads/lead.module';
 import { SigninComponent } from './security/signin/signin.component';
+import {
+  FileUploadSingleDialogComponent
+} from './shared/dialog/file-upload-single-dialog/file-upload-single-dialog.component';
 import { InfoComponent } from './shared/dialog/info/info.component';
 import { HttpInterceptorService } from './shared/services/http-interceptor.service';
 import { SharedModule } from './shared/shared.module';
@@ -32,6 +35,7 @@ const firebaseConfig = {
   messagingSenderId: '604961477170'
 };
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +43,7 @@ const firebaseConfig = {
     HomeComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -58,8 +63,13 @@ const firebaseConfig = {
   ],
   entryComponents: [
     InfoComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    FileUploadSingleDialogComponent
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'));
+  }
+}

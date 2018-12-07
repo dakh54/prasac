@@ -8,9 +8,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)"
   >
-    <mat-toolbar class="primary">
-      <img class="logo" src="assets/logo.png" />
-    </mat-toolbar>
+    <mat-toolbar> <img class="logo" src="assets/logo.png" /> </mat-toolbar>
     <mat-nav-list>
       <a
         mat-list-item
@@ -31,14 +29,7 @@
         [ngClass]="{ active: selected === 'leads' }"
       >
         <mat-icon>contacts</mat-icon>
-        <span
-          matBadge="4"
-          matBadgeColor="warn"
-          matBadgePosition="after"
-          matBadgeOverlap="false"
-          matBadgeSize="medium"
-          >Leads</span
-        >
+        <span>Leads</span> <button mat-icon-button color="warn">5</button>
         <span class="spacer"></span>
       </a>
       <a
@@ -79,20 +70,18 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar class="primary fix-top">
-      <mat-toolbar-row>
+    <mat-toolbar class="fix-top no-background">
+      <mat-toolbar-row class="no-background">
         <button
-
           mat-icon-button
           (click)="toggleSidenav()"
-          color="primary"
+          class="menu-icon"
           *ngIf="(isHandset$ | async)"
         >
-          <mat-icon *ngIf="authService.user">menu</mat-icon>
+          <mat-icon *ngIf="authService.user" color="primary">menu</mat-icon>
         </button>
         <button
           type="button"
-
           aria-label="Toggle sidenav"
           mat-icon-button
           *ngIf="(!isHandset$ | async)"
@@ -101,20 +90,27 @@
             <img class="logo" src="assets/logo.png" />
           </mat-icon>
         </button>
-        <!--
-          <span *ngIf="isHandset$ | async" class="display-3">{{title}}</span>
-        -->
+
+        <h3 appPrimaryClass *ngIf="(isHandset$ | async)">{{ title }}</h3>
+
         <span class="spacer"></span>
+        <button mat-button appCircle [matMenuTriggerFor]="menu">
+          <img appCircle [src]="authService.user.photoURL" alt="" />
+        </button>
         <button
-          mat-button
-          *ngIf="authService.user"
+          mat-mini-fab
+          *ngIf="!authService.user"
           [matMenuTriggerFor]="menu"
-          class="display-3"
-          appPrimaryClass
+          color="primary"
+          class="mat-elevation-z0"
+          appWhiteClass
         >
-          {{ authService?.getFirstName() }}
+          {{ authService?.getFirstName()[0] }}
         </button>
         <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openUploadPicture()">
+            Upload picture
+          </button>
           <button mat-menu-item (click)="openChangePassword()">
             Change password
           </button>
@@ -125,3 +121,7 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<app-file-upload-single
+  (fileOuput)="handleFileReceived($event)"
+></app-file-upload-single>

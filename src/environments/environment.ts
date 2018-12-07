@@ -11,7 +11,8 @@ export const environment = {
   leadHistoryCollection: 'leadHistories',
   brachCollection: 'branches',
   companyCollection: 'company',
-  userCollection: 'users'
+  userCollection: 'users',
+  profilePictureFolder: '/profile'
 };
 
 /*

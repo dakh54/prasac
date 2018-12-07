@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appAccentClass]'
@@ -10,7 +10,7 @@ export class AccentClassDirective implements OnInit {
     private elRef: ElementRef,
     private rend: Renderer2
     ) {
-      if (elRef && elRef.nativeElement) {
+      if (this.elRef && this.elRef.nativeElement) {
         this.elm = elRef.nativeElement;
       }
     }

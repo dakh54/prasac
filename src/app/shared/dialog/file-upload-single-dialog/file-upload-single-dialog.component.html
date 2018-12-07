@@ -1,0 +1,37 @@
+<div class="mat-typography">
+  <h2>{{ data?.title }}</h2>
+  <div class="main-content">
+    <div class="img-container" *ngIf="!selectedFile">
+      <img src="../../../../assets/profile.svg" class="img-holder" />
+    </div>
+    <div *ngIf="selectedFile"><img [src]="imgUrl" class="img-holder" /></div>
+    <span
+      style="font-weight:bold;color:green;"
+      *ngIf="currentUpload && currentUpload.progress > 0 && currentUpload.progress < 100"
+    >
+      {{ currentUpload?.progress | percent}}%
+    </span>
+    <app-file-upload-single (fileOutput)="handleFileReceived($event)">
+    </app-file-upload-single>
+  </div>
+  <div class="footer">
+    <button
+      mat-flat-button
+      color="primary"
+      appWhiteClass
+      (click)="uploadFileTrigger()"
+    >
+      <mat-icon svgIcon="camera"></mat-icon>
+      &nbsp; <span> Choose file </span>
+    </button>
+    <button
+      mat-flat-button
+      color="warn"
+      [disabled]="!selectedFile"
+      (click)="upload()"
+    >
+      <!-- <mat-icon svgIcon="content-save"></mat-icon> -->
+      <span>Upload</span>
+    </button>
+  </div>
+</div>

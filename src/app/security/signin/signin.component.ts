@@ -86,9 +86,12 @@ export class SigninComponent implements OnInit {
                     id: data.id,
                     displayName: data.displayName,
                     photoURL: data.photoURL,
-                    roles: data.roles
+                    roles: data.roles,
+                    email: data.email
                   }
                 );
+                console.log('this.authService.user', this.authService.user);
+
                 this.error = null;
                 this.authService.setLocalStorage(this.authService.user);
                 if (this.returnUrl) {

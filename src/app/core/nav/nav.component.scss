@@ -5,13 +5,10 @@ $backgroundColor: #dcedc8 !important;
 }
 
 .sidenav {
-  width: 200px;
-  // background-color:$backgroundColor;
+  width: 220px;
+  // background-color: #53643f;
 }
 
-.sidenav .mat-toolbar {
-  background: inherit;
-}
 
 .mat-toolbar.mat-primary {
   position: sticky;
@@ -28,10 +25,18 @@ $backgroundColor: #dcedc8 !important;
   color: white !important;
 }
 
-mat-icon {
-  padding: 0 20px 0 14px;
+mat-nav-list mat-icon {
+  padding: 0 24px 0 12px;
 }
 
+.menu-icon {
+  margin: 0 20px 0 0;
+
+  mat-icon {
+    font-size: 40px !important;
+    padding: 0;
+  }
+}
 
 .logo {
   max-width: 80px;
@@ -57,4 +62,16 @@ mat-nav-list {
   left: 0;
   right: 0;
   z-index: 1000;
+}
+
+.no-background,
+.mat-toolbar
+{
+  background-color: transparent !important;
+}
+
+.icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 36px;
 }

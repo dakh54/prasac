@@ -1,11 +1,14 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
 
 import { AuthService } from '../auth.service';
+import {
+  FileUploadSingleDialogComponent
+} from './../../shared/dialog/file-upload-single-dialog/file-upload-single-dialog.component';
 import { ChangePasswordComponent } from './../../users/change-password/change-password.component';
 
 @Component({
@@ -22,6 +25,10 @@ export class NavComponent {
   title = environment.appName;
 
   @ViewChild('drawer') sidenav: any;
+
+
+
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     public authService: AuthService,
@@ -29,7 +36,7 @@ export class NavComponent {
   ) {}
 
   openChangePassword() {
-    const dialogRef = this.dialog.open( ChangePasswordComponent, {
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
       width: '300px',
       height: 'auto',
       autoFocus: true
@@ -37,9 +44,24 @@ export class NavComponent {
 
     dialogRef.afterClosed().subscribe(result => {
 
+    });
+  }
+
+  openUploadPicture() {
+    const dialogRef = this.dialog.open(FileUploadSingleDialogComponent, {
+      width: 'auto',
+      height: 'auto',
+      autoFocus: true,
+      data: {
+        title: 'Upload Profile Picture'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
 
     });
   }
+
 
   toggleSidenav() {
     this.sidenav.toggle();

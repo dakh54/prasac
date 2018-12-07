@@ -7,5 +7,6 @@ export const environment = {
   leadHistoryCollection: 'leadHistories',
   brachCollection: 'branches',
   companyCollection: 'company',
-  userCollection: 'user'
+  userCollection: 'users',
+  profilePictureFolder: '/profile'
 };

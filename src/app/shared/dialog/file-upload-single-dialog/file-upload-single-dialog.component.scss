@@ -1,0 +1,34 @@
+$inactiveClor: #eaeaea;
+
+.mat-typography {
+    // width: 300px;
+    width: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+// .img-container {
+//     padding: 10px 20px;
+//     padding: 20px;
+// }
+
+.img-holder {
+    width: 100%;
+}
+
+.img-container,
+.img-holder {
+    background-color: $inactiveClor;
+}
+
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        margin-left: 8px;
+        // background-color: none;
+    }
+
+}
