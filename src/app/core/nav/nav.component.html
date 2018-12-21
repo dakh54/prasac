@@ -70,7 +70,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar class="fix-top no-background">
+    <mat-toolbar class="fix-top no-background" *ngIf="authService.user">
       <mat-toolbar-row class="no-background">
         <button
           mat-icon-button
@@ -78,8 +78,9 @@
           class="menu-icon"
           *ngIf="(isHandset$ | async)"
         >
-          <mat-icon *ngIf="authService.user" color="primary">menu</mat-icon>
+          <mat-icon color="primary">menu</mat-icon>
         </button>
+
         <button
           type="button"
           aria-label="Toggle sidenav"
@@ -94,12 +95,23 @@
         <h3 appPrimaryClass *ngIf="(isHandset$ | async)">{{ title }}</h3>
 
         <span class="spacer"></span>
-        <button mat-button appCircle [matMenuTriggerFor]="menu">
-          <img appCircle [src]="authService.user.photoURL" alt="" />
+
+        <!-- <button mat-mini-fab [matMenuTriggerFor]="menu"
+          class="mat-elevation-z0"
+          *ngIf="authService.user.photoURL">
+          <img [src]="authService.user?.photoURL" />
+        </button> -->
+
+        <button class="profile-container" [matMenuTriggerFor]="menu"     *ngIf="authService.user.photoURL"
+          [matMenuTriggerFor]="menu">
+          <img class="profile"
+            [src]="authService.user?.photoURL" />
         </button>
+
+
         <button
           mat-mini-fab
-          *ngIf="!authService.user"
+          *ngIf="!authService.user.photoURL"
           [matMenuTriggerFor]="menu"
           color="primary"
           class="mat-elevation-z0"

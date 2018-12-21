@@ -8,7 +8,7 @@ import * as sharp from 'sharp';
 
 // const gsc = Storage();
 
-const bucket = gsc
+
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript

@@ -53,6 +53,7 @@ export class AuthService {
     this.user.photoURL = photoURL;
     const db = firebase.firestore();
     db.settings({timestampsInSnapshots: true});
+    
     console.log('this.user', this.user);
     console.log('this.user.email', this.user.email);
     console.log('this.userCollection', this.userCollection);

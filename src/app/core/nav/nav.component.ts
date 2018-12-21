@@ -23,6 +23,7 @@ export class NavComponent {
     .pipe(map((result) => result.matches));
 
   title = environment.appName;
+  profilePictureFolder = environment.profilePictureFolder;
 
   @ViewChild('drawer') sidenav: any;
 
@@ -53,7 +54,8 @@ export class NavComponent {
       height: 'auto',
       autoFocus: true,
       data: {
-        title: 'Upload Profile Picture'
+        title: 'Upload Profile Picture',
+        filePath: this.profilePictureFolder
       }
     });
 

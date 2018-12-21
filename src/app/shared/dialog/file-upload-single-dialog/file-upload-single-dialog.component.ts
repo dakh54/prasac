@@ -39,8 +39,6 @@ export class FileUploadSingleDialogComponent implements OnInit {
     if (_files) {
       this.selectedFile  = _files.item(0);
       var reader = new FileReader();
-
-
       reader.onload = (event: any) => {
         this.imgUrl = event.target.result;
       }
@@ -54,7 +52,7 @@ export class FileUploadSingleDialogComponent implements OnInit {
 
   upload() {
     this.currentUpload = new Upload(this.selectedFile);
-    this.FileService.uploadProfilePicture(this.currentUpload);
+    this.FileService.uploadProfilePicture(this.data.filePath, this.currentUpload);
   }
 
   onNoClick(): void {
