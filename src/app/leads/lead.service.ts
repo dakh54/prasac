@@ -123,10 +123,11 @@ export class LeadService {
   }
 
 
-  GetNewLeads(): Observable<any> {
-   return this.leadCollections.valueChanges();
+  GetLeads(status: string): Observable<any> {
+  //  return this.leadCollections.valueChanges();
+  return this.afs.collection(this.leadColName, ref =>
+    ref.where('status','==', status)
+    .orderBy('createdAt'))
+    .valueChanges()
   }
-
-
-
 }

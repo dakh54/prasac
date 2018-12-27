@@ -72,7 +72,11 @@ export class LeadNewComponent implements OnInit {
         }
       });
 
+      this.leadService.GetLeads('new')
+      .subscribe(data => {
+        console.log('data-new Leads', data);
 
+      })
   }
 
   private setFormValue() {

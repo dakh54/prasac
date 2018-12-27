@@ -1,0 +1,32 @@
+[debug] [2018-12-27T18:46:15.090Z] ----------------------------------------------------------------------
+[debug] [2018-12-27T18:46:15.093Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\chenda.lengh\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only functions
+[debug] [2018-12-27T18:46:15.093Z] CLI Version:   6.2.2
+[debug] [2018-12-27T18:46:15.093Z] Platform:      win32
+[debug] [2018-12-27T18:46:15.094Z] Node Version:  v10.13.0
+[debug] [2018-12-27T18:46:15.096Z] Time:          Thu Dec 27 2018 12:46:15 GMT-0600 (Central Standard Time)
+[debug] [2018-12-27T18:46:15.096Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-27T18:46:15.110Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-27T18:46:15.111Z] > authorizing via signed-in user
+[debug] [2018-12-27T18:46:15.111Z] [iam] checking project prasac-a8e2a for permissions ["firebase.projects.get"]
+[debug] [2018-12-27T18:46:15.113Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-12-27T18:46:15.114Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2018-12-27T18:46:15.232Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-27T18:46:15.248Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/prasac-a8e2a:testIamPermissions  
+
+[debug] [2018-12-27T18:46:15.372Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-27T18:46:15.373Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/prasac-a8e2a  
+ 
+[debug] [2018-12-27T18:46:15.478Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\chenda.lengh\Documents\Visual Studio 2017\Projects\prasac'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-12-27T18:46:16.646Z] Fetching environment
+[debug] [2018-12-27T18:46:16.650Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/604961477170:getServerAppConfig  
+ 
+[debug] [2018-12-27T18:46:16.804Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-27T18:46:16.805Z] Starting @google-cloud/functions-emulator
+[debug] [2018-12-27T18:46:19.370Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
